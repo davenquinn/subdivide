@@ -1,12 +1,22 @@
 """
 Fiona- and geojson-compatible module for interpolating coordinates along lines
 """
-from shapely.geometry import shape
+from shapely.geometry import shape, mapping
 import logging as log
 from strategies import preserve_shape
 from cut import cut
 
-def subdivide(records, interval=1, strategy=preserve_shape):
+def subdivide(geometry, interval=1, strategy=preserve_shape):
+	"""
+	Subdivides line at a given interval
+	"""
+	geometry = shape(geometry)
+	assert geometry.geom_type == "LineString"
+	coords = [(p.x, p.y) for p in strategy(geometry,interval)]
+	geometry.coords = coords
+	return geometry
+
+def subdivide_all(records, interval=1, strategy=preserve_shape):
 	"""
 	Subdivides line at a given interval
 	"""
