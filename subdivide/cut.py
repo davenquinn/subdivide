@@ -37,7 +37,7 @@ def cut(records, interval=100, preserve_attributes=False):
 							out[i] = rec[i]
 				yield out
 
-		except Exception, e:
+		except Exception as e:
 			# Writing untransformed features to a different shapefile
 			# is another option.
 			log.exception("Error transforming record")
