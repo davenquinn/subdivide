@@ -8,7 +8,7 @@ install_requires = [
 
 setup(
     name='subdivide',
-    version=0.1,
+    version="1.0",
     description="Subdivides lines by several methods.",
     license='MIT',
     install_requires=install_requires,
